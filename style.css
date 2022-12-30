@@ -1,1 +1,87 @@
+html
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #33ffff;
+    font-family: "Orbitron",sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#title
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 800px;
+    font-size: 42px;
+}
+
+#display
+{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background-color: black;
+    color: #33ffff;
+    width: 340px;
+    height: 75px;
+    border: 2.5px solid orange;
+    border-radius: 4px;
+}
+.buttons
+{
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(4,1fr);  
+    background-color:orange;
+    border: 2px solid orange;
+    border-radius: 8px;
+}
+
+.buttons button
+{
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    font-size: 32px;
+    color:#33ffff ;
+    background-color: black;
+}
+
+#zero_button
+{
+   grid-column-start: 1;
+   grid-column: span 2;
+   width: 170px;
+   border-bottom-left-radius: 8px;
+}
+
+#equals
+{
+    border-bottom-right-radius: 8px;
+}
+
+#footer
+{
+    display: flex;
+    justify-content: right;
+    align-items:center;
+}
 
