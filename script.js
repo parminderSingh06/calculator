@@ -50,6 +50,23 @@ function clearAll()
     let firstNegative = false;
     let secondNegative = false;
     let n_status = 'off';
+    for(let i=0;i<operators.length;i++)
+    {
+        operators[i].setAttribute('style','background-color:black');
+    }
+}
+
+function bgColorAdjust(operator)
+{
+    for(let i=0;i<operators.length;i++)
+    {
+        if(operators[i].value == operator)
+        {
+            operators[i].setAttribute('style','background-color:orange');
+        }
+        else
+        operators[i].setAttribute('style','background-color:black');
+    }
 }
 
 function setNegative(status)
@@ -102,6 +119,7 @@ function setOperator(user_input)
         second_num = "";
     }
     operator = user_input;
+    bgColorAdjust(operator);
 }
 
 function display_first(user_input)
@@ -167,7 +185,7 @@ function operate(operator,a,b)
     let ans = 0;
     a = Number(a);
     b = Number(b);
-    console.log(firstNegative);
+    
     if(firstNegative == true)
     {
         a = a * -1;
@@ -200,6 +218,10 @@ function operate(operator,a,b)
     }
     firstNegative = false;
     secondNegative = false;
+    for(let i=0;i<operators.length;i++)
+    {
+        operators[i].setAttribute('style','background-color:black');
+    }
     n_status = 'off';
     return ans;
 }
