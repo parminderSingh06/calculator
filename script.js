@@ -4,16 +4,35 @@ let second_num = "";
 let firstNegative = false;
 let secondNegative = false;
 let n_status = 'off';
+let am = false;
+let am_num = Math.floor(Math.random() * 1001);
+let am_count = 0;
+
 const screen = document.querySelector('#display');
 const numbers = document.querySelectorAll('.numbers');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 const negative = document.querySelector('#negative');
+const amrit_mode = document.querySelector('#am_mode');
+
+amrit_mode.addEventListener('click', function(){
+    if(am == true){
+        am = false;
+        clearAll();
+        return;
+    }
+    if(am == false){
+        am = true;
+        amrit_mode.setAttribute('style', 'background-color: orange');
+        return;
+    }
+})
 
 negative.addEventListener('click', function(){
     numtype();
 })
+
 equals.addEventListener('click',function(){
     operate(operator,first_num,second_num);
 });
@@ -43,6 +62,7 @@ for(let i=0;i<operators.length;i++)
 
 function clearAll()
 {
+    am = false;
     first_num = "";
     second_num = "";
     operator = undefined;
@@ -54,6 +74,8 @@ function clearAll()
     {
         operators[i].setAttribute('style','background-color:black');
     }
+    amrit_mode.setAttribute('style', 'background-color:black');
+    screen.setAttribute('style', 'font-size: 42px');
 }
 
 function bgColorAdjust(operator)
@@ -109,10 +131,6 @@ function numtype()
 
 function setOperator(user_input)
 {
-    if(first_num == "")
-    {
-        return;
-    }
     if(second_num != "")
     {
         first_num = operate(operator,first_num,second_num);
@@ -180,12 +198,30 @@ function mod(a,b)
     return a % b;
 }
 
+function amrit()
+{
+    am_count++;
+    screen.textContent = am_num;
+    if (am_count === 4)
+    {
+        screen.setAttribute('style', 'font-size: 8px');
+        screen.textContent = "Its gonna be the same answer the fourth time Amrit";
+        return;
+    }
+    if (am_count > 4)
+    {
+        am_count = 0;
+        clearAll();
+        am_num = Math.floor(Math.random() * 1001);
+        return;
+    }
+}
+
 function operate(operator,a,b)
 {
     let ans = 0;
     a = Number(a);
     b = Number(b);
-    
     if(firstNegative == true)
     {
         a = a * -1;
@@ -221,6 +257,12 @@ function operate(operator,a,b)
     for(let i=0;i<operators.length;i++)
     {
         operators[i].setAttribute('style','background-color:black');
+    }
+    if(am == true)
+    {
+        console.log('called');
+        amrit();
+        return;
     }
     n_status = 'off';
     return ans;
