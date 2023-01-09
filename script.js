@@ -7,6 +7,7 @@ let n_status = 'off';
 let am = false;
 let am_num = Math.floor(Math.random() * 1001);
 let am_count = 0;
+let operate_called = false;
 
 const screen = document.querySelector('#display');
 const numbers = document.querySelectorAll('.numbers');
@@ -44,12 +45,21 @@ clear.addEventListener('click',function(){
 for(let i=0;i<numbers.length;i++)
 {
     numbers[i].addEventListener('click',function(){
+        if(operator == '')
+        {
+            clearAll();
+            operator = undefined;
+            console.log("First:" + first_num + " Operator:" + operator + " Second:" + second_num);
+        }
         if(operator == undefined)
         {
             display_first(numbers[i].value);
+            console.log("1: " + numbers[i].value);
+            return;
         }
         else
             display_second(numbers[i].value);
+            console.log("2: " + numbers[i].value);
     });
 }
 
@@ -161,6 +171,8 @@ function display_result(num)
     screen.textContent = num;
     first_num = num;
     second_num = "";
+    operator = '';
+    console.log("First:" + first_num + " Operator:" + operator + " Second:" + second_num);
 }
 
 function add(a,b)
@@ -204,7 +216,7 @@ function amrit()
     screen.textContent = am_num;
     if (am_count === 4)
     {
-        screen.setAttribute('style', 'font-size: 8px');
+        screen.setAttribute('style', 'font-size: 14px');
         screen.textContent = "Its gonna be the same answer the fourth time Amrit";
         return;
     }
